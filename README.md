@@ -1,6 +1,6 @@
 <div align="center">
 
-# Urban Nomad Motorcycle Gears - Enterprise Network Design Documentation
+## Urban Nomad Motorcycle Gears - Enterprise Network Design Documentation
 
 *A complete, end-to-end enterprise network design for a mid-sized retail and distribution company — from business requirements through physical design, security architecture, WAN connectivity, and Cisco Packet Tracer simulation.*
 
@@ -44,8 +44,6 @@ Urban Nomad required a network capable of supporting:
 - **CCTV and biometric** access control (isolated IoT zone)
 - **Guest WiFi** for retail customers (fully isolated)
 - **Zero Trust security** — every device authenticated, every flow logged
-
-The resulting design implements a **three-tier switching hierarchy**, **dual-ISP internet redundancy**, **Cisco ISE 802.1X NAC**, **Cisco Firepower NGFW with IDS/IPS**, **Wazuh SIEM**, and **IPsec IKEv2 site-to-site VPN** to all branches.
 ---
 ## Network Topology
 
@@ -57,7 +55,7 @@ The resulting design implements a **three-tier switching hierarchy**, **dual-ISP
 
 ### WAN Hub-and-Spoke (HQ ↔ 5 Branches)
 
-//In progress
+#### //In progress
 ---
 
 ## Network at a Glance
@@ -143,18 +141,6 @@ The resulting design implements a **three-tier switching hierarchy**, **dual-ISP
 - **Assume Breach** — inter-VLAN ACLs deny by default; CCTV, POS, and Guest are fully isolated
 - **Continuous Monitoring** — every firewall hit, auth event, and VPN session logged to Wazuh
 
-### Key Firewall Rules (Summary)
-
-| Direction | Rule | Action |
-|-----------|------|--------|
-| Internet → DMZ | HTTPS/HTTP to web server only | PERMIT + inspect |
-| Internal → Internet | All VLANs (department-specific ports) | PERMIT + SSL inspect |
-| Guest → Internal | Any destination inside 172.16.x.x | **DENY** |
-| POS → Internal | Any internal VLAN | **DENY** (payment GW only via FW) |
-| CCTV → Internet | Any outbound | **DENY** |
-| Branch VPN → HQ | ERP, File Server, Call Manager only | PERMIT (specific) |
-| Management (32) | Non-IT VLANs | **DENY** — IT only, SSH only |
-
 ---
 
 ## WAN & Branch Connectivity
@@ -186,7 +172,7 @@ The resulting design implements a **three-tier switching hierarchy**, **dual-ISP
 
 ---
 
-## Hardware Summary
+## Hardware Summary (Proposed)
 
 ### HQ Core Infrastructure
 
