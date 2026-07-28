@@ -1,7 +1,6 @@
 <div align="center">
 
-# Urban Nomad Motorcycle Gears
-## Enterprise Network Design Project
+# Urban Nomad Motorcycle Gears - Enterprise Network Design Documentation
 
 *A complete, end-to-end enterprise network design for a mid-sized retail and distribution company — from business requirements through physical design, security architecture, WAN connectivity, and Cisco Packet Tracer simulation.*
 
@@ -11,32 +10,9 @@
 ![Packet Tracer](https://img.shields.io/badge/Cisco-Packet%20Tracer%208.2-1BA0D7?logo=cisco&logoColor=white)
 ![Security](https://img.shields.io/badge/Security-Zero%20Trust%20Architecture-E94560?logo=shield&logoColor=white)
 ![VPN](https://img.shields.io/badge/WAN-IPsec%20IKEv2%20Site--to--Site%20VPN-065F46?logoColor=white)
-![Docs](https://img.shields.io/badge/Phases-7%20of%207%20Complete-166534?logoColor=white)
-![Draw.io](https://img.shields.io/badge/Diagrams-draw.io-F08705?logoColor=white)
 
 </div>
 
----
-
-## 📋 Table of Contents
-
-- [Project Overview](#-project-overview)
-- [Executive Summary](#-executive-summary)
-- [Network at a Glance](#-network-at-a-glance)
-- [Project Phases](#-project-phases)
-- [IP Addressing Scheme](#-ip-addressing-scheme)
-- [VLAN Design](#-vlan-design)
-- [Network Topology](#-network-topology)
-- [Security Architecture](#-security-architecture)
-- [WAN & Branch Connectivity](#-wan--branch-connectivity)
-- [Hardware Summary](#-hardware-summary)
-- [Packet Tracer Simulation](#-packet-tracer-simulation)
-- [Key Design Decisions](#-key-design-decisions)
-- [Lessons Learned](#-lessons-learned)
-- [Repository Structure](#-repository-structure)
-- [Tools Used](#-tools-used)
-
----
 
 ## Project Overview
 
@@ -153,31 +129,13 @@ The design is structured across 7 phases, each producing a standalone document:
 
 ### HQ Three-Tier Physcial Design
 
-![alt text](physcialdesign.png)
+![Network Topology](screenshots/physicaldesign.png)
 
 
 
 ### WAN Hub-and-Spoke (HQ ↔ 5 Branches)
 
-```
-                    ┌──────────────────┐
-                    │  HQ FIREPOWER    │
-                    │  VPN Hub         │
-                    │  Dual ISP        │
-                    └──┬──┬──┬──┬──┬──┘
-                       │  │  │  │  │  IPsec IKEv2 tunnels
-           ┌───────────┘  │  │  │  └───────────┐
-           │         ┌────┘  └────┐             │
-           ▼         ▼            ▼             ▼
-        B01-RT    B02-RT       B04-RT        B05-RT
-        MX67      MX67         MX67          MX67
-     Distribution Retail+Svc  Warehouse   Sales Office
-                        ▲
-                     B03-RT
-                      MX67
-                    Retail
-```
-
+##//In progress
 ---
 
 ## Security Architecture
@@ -275,11 +233,6 @@ The design is structured across 7 phases, each producing a standalone document:
 ---
 
 
-
-
----
-
----
 
 ## About
 
