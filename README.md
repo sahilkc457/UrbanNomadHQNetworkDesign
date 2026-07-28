@@ -67,6 +67,10 @@ This project simulates the complete network infrastructure for Urban Nomad Motor
 
 <img src="screenshots/WANTopology.png" width="700">
 
+##### Security Topology
+
+<img src="screenshots/SecurityZoning.png" width="700">
+
 ---
 
 ## About
