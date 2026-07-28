@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏍️ Urban Nomad Motorcycle Gears
+# Urban Nomad Motorcycle Gears
 ## Enterprise Network Design Project
 
 *A complete, end-to-end enterprise network design for a mid-sized retail and distribution company — from business requirements through physical design, security architecture, WAN connectivity, and Cisco Packet Tracer simulation.*
@@ -38,7 +38,7 @@
 
 ---
 
-## 🗂 Project Overview
+## Project Overview
 
 This project is a **full enterprise network design** for *Urban Nomad Motorcycle Gears* — a fictional mid-sized retail and distribution company used as the basis for a realistic, interview-ready portfolio.
 
@@ -57,7 +57,7 @@ The design covers **one headquarters** (80–120 staff, 2-floor building) and **
 
 ---
 
-## 📝 Executive Summary
+## Executive Summary
 
 Urban Nomad required a network capable of supporting:
 
@@ -73,7 +73,7 @@ The resulting design implements a **three-tier switching hierarchy**, **dual-ISP
 
 ---
 
-## 📊 Network at a Glance
+## Network at a Glance
 
 | Metric | Value |
 |--------|-------|
@@ -93,7 +93,7 @@ The resulting design implements a **three-tier switching hierarchy**, **dual-ISP
 
 ---
 
-## 🗺 Project Phases
+## Project Phases
 
 The design is structured across 7 phases, each producing a standalone document:
 
@@ -109,7 +109,7 @@ The design is structured across 7 phases, each producing a standalone document:
 
 ---
 
-## 🌐 IP Addressing Scheme
+## IP Addressing Scheme
 
 ### Address Space: `172.16.0.0/12`
 
@@ -124,7 +124,7 @@ The design is structured across 7 phases, each producing a standalone document:
 
 ---
 
-## 🔀 VLAN Design
+## VLAN Design
 
 ### Department VLANs
 
@@ -149,41 +149,13 @@ The design is structured across 7 phases, each producing a standalone document:
 
 ---
 
-## 🖧 Network Topology
+## Network Topology
 
-### HQ Three-Tier Hierarchy
+### HQ Three-Tier Physcial Design
 
-```
-                        ┌─────────────────────────────────┐
-                        │         INTERNET / WAN          │
-                        │    ISP 1 (Primary)               │
-                        │    ISP 2 (Failover)              │
-                        └──────────────┬──────────────────┘
-                                       │ Dual WAN
-                        ┌──────────────▼──────────────────┐
-                        │   HQ-FW-EDGE-01                 │
-                        │   Cisco Firepower 1120          │  ← NGFW, IPS, VPN Hub
-                        │   DMZ: 172.16.33.0/28           │
-                        └──────────────┬──────────────────┘
-                                       │ 10GbE Uplink
-               ┌───────────────────────┴────────────────────────┐
-               │            CORE LAYER (L3)                     │
-               │  HQ-SW-CORE-01  ◄──StackWise──► HQ-SW-CORE-02 │
-               │  Cisco Catalyst 9300-48P (×2)                  │
-               │  SVIs for all VLANs | Inter-VLAN Routing       │
-               └──┬──────────┬──────────┬──────────┬────────────┘
-                  │          │          │           │  10GbE Fibre
-          ┌───────▼──┐  ┌────▼───┐  ┌──▼─────┐  ┌─▼──────┐
-          │ IDF DIST │  │Retail  │  │Warehse │  │Servers │   ← ACCESS LAYER
-          │ 1st Floor│  │ACC SW  │  │ACC SW  │  │ACC SW  │
-          │9200L-24P │  │9200-24P│  │9200-24T│  │9200-24P│
-          └──┬──┬────┘  └───┬────┘  └───┬────┘  └────────┘
-             │  │           │            │
-         ACC-01 ACC-02    POS/Guest    CCTV/NVR
-         Mgmt/HR IT/Sales  VLANs       VLANs
+![alt text](physcialdesign.png)
 
-Legend:  ── = 1GbE  ══ = 10GbE  All inter-switch links are 802.1Q trunks
-```
+
 
 ### WAN Hub-and-Spoke (HQ ↔ 5 Branches)
 
@@ -208,7 +180,7 @@ Legend:  ── = 1GbE  ══ = 10GbE  All inter-switch links are 802.1Q trunks
 
 ---
 
-## 🔒 Security Architecture
+## Security Architecture
 
 ### Defence-in-Depth Model
 
@@ -242,7 +214,7 @@ Legend:  ── = 1GbE  ══ = 10GbE  All inter-switch links are 802.1Q trunks
 
 ---
 
-## 🌍 WAN & Branch Connectivity
+## WAN & Branch Connectivity
 
 ### VPN Architecture
 
@@ -271,7 +243,7 @@ Legend:  ── = 1GbE  ══ = 10GbE  All inter-switch links are 802.1Q trunks
 
 ---
 
-## 🖥 Hardware Summary
+## Hardware Summary
 
 ### HQ Core Infrastructure
 
@@ -302,129 +274,14 @@ Legend:  ── = 1GbE  ══ = 10GbE  All inter-switch links are 802.1Q trunks
 
 ---
 
-## 🧪 Packet Tracer Simulation
 
-The Phase 6 lab guide builds a functional simulation of the Urban Nomad HQ + Branch B01 in **Cisco Packet Tracer 8.2**:
 
-| Lab | What's Configured | Verified By |
-|-----|-------------------|-------------|
-| Lab 1 | 20-device topology with labels | Canvas screenshot |
-| Lab 2 | Core switch — 10 VLANs, 10 SVIs, 5 trunks, STP, SSH | `show vlan brief`, `show ip int brief` |
-| Lab 3 | 4 access switches — trunk, access, voice VLAN, PortFast | `show interfaces trunk` |
-| Lab 4 | DHCP for all VLANs on core switch (Option 150 for VoIP) | `show ip dhcp binding` |
-| Lab 5 | PCs get DHCP, inter-VLAN pings confirmed | Ping matrix (7 tests) |
-| Lab 6 | Guest, CCTV, POS ACLs applied to SVIs | `show ip access-lists` with hit counters |
-| Lab 7 | Edge router NAT/PAT + internet cloud simulation | `show ip nat translations` |
-| Lab 8 | Call Manager Express — 2 phones registered, call made | `show ephone registered` |
-| Lab 9 | IPsec site-to-site VPN HQ ↔ B01, pings cross tunnel | `show crypto ipsec sa` |
-
-> **Note:** PT uses IKEv1 for IPsec. Production design uses IKEv2 (documented in Phase 4). Concepts are identical — only the IKE negotiation phase syntax differs.
 
 ---
 
-## 🧠 Key Design Decisions
-
-### 1. Why 172.16.0.0/12?
-172.16.0.0/12 provides over 1 million addresses across the `172.16.x.x – 172.31.x.x` range. Splitting it by third octet gives HQ, branches, and growth regions that are instantly identifiable in a `show ip route` output — far more operationally readable than 10.0.0.0/8 with less structure.
-
-### 2. Why /23 subnets for VLANs?
-/24 (254 hosts) is the instinct, but /23 (510 hosts) provides room to grow without a renumbering exercise — one of the most expensive and disruptive operations in network management. The cost is negligible (one extra bit), the benefit is significant.
-
-### 3. Why Cisco ISE over Windows NPS?
-NPS handles basic 802.1X but lacks device profiling, posture assessment, and granular policy sets. ISE enables dynamic VLAN assignment, guest onboarding, MAB for IoT, and CoA (Change of Authorisation) — allowing the NOC to push a device into a restricted VLAN in real-time without touching the switch. This is what enterprises actually deploy.
-
-### 4. Why Meraki MX67 at branches instead of matching Firepower?
-Zero-touch provisioning — a branch can go live with a courier delivery and a power cable. IT at HQ claims the device via dashboard before it ships. Meraki Auto VPN builds the tunnel automatically. For 10-person remote sites with no local IT, this operational simplicity outweighs the CLI control offered by Firepower. Costs are also significantly lower per-branch.
-
-### 5. Why Wazuh over a commercial SIEM?
-Wazuh is free, open-source, production-grade, and widely deployed in enterprise environments. It supports Syslog ingestion, file integrity monitoring, active response (auto-blocking via ISE CoA), and a full web dashboard. For a design project, it also demonstrates awareness of cost-conscious tooling decisions — something interviewers in SME and mid-market roles specifically value.
-
-### 6. Why split-tunnel VPN for branches?
-Without split tunnelling, all branch internet traffic hairpins through HQ — consuming expensive MPLS or VPN bandwidth and introducing latency. With split tunnelling, only HQ-bound traffic (ERP, File, VoIP) goes through the tunnel. General browsing exits the branch ISP locally. Exception: POS payment traffic is forced through the tunnel to HQ for centralised firewall inspection (PCI-DSS requirement).
-
 ---
 
-## 💡 Lessons Learned
-
-> *Reflections on what I would approach differently in a second iteration.*
-
-**1. Start with a proper addressing plan before touching any device.**
-The /12 split by region made routing and documentation clean throughout. In an earlier draft I started with 10.0.x.x and had to renumber when branch addressing collided with HQ management ranges. Plan the whole address space on paper first.
-
-**2. VLAN count creep is real.**
-I started with 5 VLANs (one per department) and ended with 11. Each new functional requirement (CCTV, POS, Guest, Voice, Management plane) justified a new segment. This is realistic — real networks always have more VLANs than the initial design assumes. The lesson: build your IP scheme with generous gaps from day one.
-
-**3. The ACL matrix should be drawn before any configuration begins.**
-Writing the 12×12 inter-VLAN matrix in Phase 2 forced me to think through every single traffic flow and justify it. This caught several security gaps — for example, I initially forgot that CCTV cameras would need a path to the NVR, and that the DMZ web server needs a restricted path back to the ERP server. The matrix is a design tool, not just documentation.
-
-**4. NAT and VPN interact in ways that break things.**
-In the Packet Tracer lab, VPN traffic was being NAT'd before entering the tunnel, causing the branch router to reject it (the source IP no longer matched the interesting traffic ACL). The fix — a deny statement in the NAT ACL to exempt VPN-bound traffic — is a real-world gotcha that trips up experienced engineers. Understanding it thoroughly was one of the most valuable parts of the lab.
-
-**5. Document as you design, not after.**
-By the time I reached Phase 7, every decision was already documented with its justification in the phase where it was made. Writing documentation retrospectively leads to incomplete justifications — you forget why you chose something. The phased approach enforced concurrent documentation.
-
----
-
-## 📁 Repository Structure
-
-```
-urban-nomad-network-design/
-│
-├── README.md                          ← You are here (Phase 7)
-│
-├── phase1-BRD/
-│   └── Urban_Nomad_Phase1_BRD.docx   ← Business Requirements Document
-│
-├── phase2-LND/
-│   └── Urban_Nomad_Phase2_LND.docx   ← Logical Network Design
-│
-├── phase3-PND/
-│   └── Urban_Nomad_Phase3_PND.docx   ← Physical Network Design
-│
-├── phase4-SEC/
-│   └── Urban_Nomad_Phase4_SEC.docx   ← Security & Edge Design
-│
-├── phase5-WAN/
-│   └── Urban_Nomad_Phase5_WAN.docx   ← WAN & Branch Connectivity
-│
-├── phase6-Lab/
-│   └── Urban_Nomad_Phase6_PTLab.docx ← Packet Tracer Lab Guide
-│
-├── packet-tracer/
-│   └── UrbanNomad_HQ_B01.pkt         ← Completed PT simulation file
-│
-└── screenshots/
-    ├── SS-01_topology_canvas.png
-    ├── SS-02_show_vlan_brief.png
-    ├── SS-03_show_ip_int_brief.png
-    ├── SS-04_show_interfaces_trunk.png
-    ├── SS-05_pc_dhcp_assignment.png
-    ├── SS-06_show_dhcp_binding.png
-    ├── SS-07_intervlan_ping_pass.png
-    ├── SS-08_guest_ping_blocked.png
-    ├── SS-09_show_access_lists.png
-    ├── SS-10_show_nat_translations.png
-    ├── SS-11_ephone_registered.png
-    ├── SS-12_voip_call_active.png
-    ├── SS-13_isakmp_sa_qmidle.png
-    └── SS-14_ipsec_sa_counters.png
-```
-
----
-
-## 🛠 Tools Used
-
-| Tool | Purpose | Cost |
-|------|---------|------|
-| [Cisco Packet Tracer 8.2](https://netacad.com) | Network simulation — VLANs, routing, VoIP, VPN | Free (NetAcad account) |
-| [draw.io / diagrams.net](https://diagrams.net) | Logical and physical topology diagrams | Free |
-| [Microsoft Word / docx](https://microsoft.com) | Phase documents with professional formatting | Paid / Free online |
-| [Wazuh](https://wazuh.com) | SIEM platform (documented in Phase 4) | Free (open-source) |
-| [GitHub](https://github.com) | Version control and portfolio hosting | Free |
-
----
-
-## 👤 About
+## About
 
 This project was designed and documented as a portfolio piece demonstrating enterprise network engineering skills across:
 
@@ -440,8 +297,6 @@ This project was designed and documented as a portfolio piece demonstrating ente
 
 <div align="center">
 
-**Urban Nomad Motorcycle Gears — Enterprise Network Design Project**
-
-*Phase 1 BRD → Phase 2 LND → Phase 3 PND → Phase 4 SEC → Phase 5 WAN → Phase 6 Lab → Phase 7 README*
+**Urban Nomad Motorcycle Gears - Enterprise Network Design Project**
 
 </div>
