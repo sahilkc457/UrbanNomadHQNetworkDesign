@@ -45,8 +45,19 @@ Urban Nomad required a network capable of supporting:
 - **Guest WiFi** for retail customers (fully isolated)
 - **Zero Trust security** — every device authenticated, every flow logged
 
-The resulting design implements a **three-tier switching hierarchy**, **dual-ISP internet redundancy**, **Cisco ISE 802.1X NAC**, **Cisco Firepower NGFW with IDS/IPS**, **Wazuh SIEM**, and **IPsec IKEv2 site-to-site VPN** to all branches — all documented across 7 phases with supporting Packet Tracer simulation.
+The resulting design implements a **three-tier switching hierarchy**, **dual-ISP internet redundancy**, **Cisco ISE 802.1X NAC**, **Cisco Firepower NGFW with IDS/IPS**, **Wazuh SIEM**, and **IPsec IKEv2 site-to-site VPN** to all branches.
+---
+## Network Topology
 
+### HQ Three-Tier Physcial Design
+
+![Network Topology](screenshots/physicaldesign.png)
+
+
+
+### WAN Hub-and-Spoke (HQ ↔ 5 Branches)
+
+//In progress
 ---
 
 ## Network at a Glance
@@ -69,21 +80,6 @@ The resulting design implements a **three-tier switching hierarchy**, **dual-ISP
 
 ---
 
-## Project Phases
-
-The design is structured across 7 phases, each producing a standalone document:
-
-| Phase | Document | Description |
-|-------|----------|-------------|
-| **[Phase 1](./phase1-BRD/)** | Business Requirements Document | Company profile, department mapping, critical systems, uptime requirements, security posture selection |
-| **[Phase 2](./phase2-LND/)** | Logical Network Design | IP scheme, VLAN table, inter-VLAN ACL matrix, STP/MST design, trunk/access port standards, QoS DSCP policy, naming conventions |
-| **[Phase 3](./phase3-PND/)** | Physical Network Design | Cisco hardware BoM (model numbers), MDF/IDF rack layouts, structured cabling (TIA-568), PoE budget, UPS sizing, WiFi site survey |
-| **[Phase 4](./phase4-SEC/)** | Security & Edge Design | Firewall rule base, dual-ISP failover (IP SLA), Cisco ISE 802.1X NAC, Firepower IDS/IPS policy, IPsec VPN parameters, Wazuh SIEM, formal security policy |
-| **[Phase 5](./phase5-WAN/)** | WAN & Branch Connectivity | Branch UNM-B01 full design, Meraki MX67 config, VPN bring-up procedure (31 steps), traffic flows, bandwidth sizing, 4G/LTE failover, all-5-branch comparison |
-| **[Phase 6](./phase6-Lab/)** | Packet Tracer Lab Guide | 9 hands-on labs — VLANs, SVIs, DHCP, ACLs, NAT, VoIP (CME), site-to-site IPsec VPN — full IOS commands with explanations |
-| **[Phase 7](./README.md)** | Master Documentation | This document — consolidated reference and GitHub portfolio |
-
----
 
 ## IP Addressing Scheme
 
@@ -125,18 +121,7 @@ The design is structured across 7 phases, each producing a standalone document:
 
 ---
 
-## Network Topology
 
-### HQ Three-Tier Physcial Design
-
-![Network Topology](screenshots/physicaldesign.png)
-
-
-
-### WAN Hub-and-Spoke (HQ ↔ 5 Branches)
-
-##//In progress
----
 
 ## Security Architecture
 
