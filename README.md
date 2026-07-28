@@ -28,44 +28,44 @@ This project simulates the complete network infrastructure for Urban Nomad Motor
 
 ## Technologies
 
-• Cisco Catalyst Switching
-• Cisco Firepower NGFW
-• Cisco Meraki
-• Cisco ISE (802.1X)
-• Cisco Packet Tracer
-• Wazuh SIEM
-• Active Directory
-• IPsec IKEv2 VPN
+- Cisco Catalyst Switching
+- Cisco Firepower NGFW
+- Cisco Meraki
+- Cisco ISE (802.1X)
+- Cisco Packet Tracer
+- Wazuh SIEM
+- Active Directory
+- IPsec IKEv2 VPN
 ---
 
 ## Project Highlights
 
-✅ Three-tier enterprise campus design
+- Three-tier enterprise campus design
 
-✅ Dual ISP redundancy with automatic failover
+- Dual ISP redundancy with automatic failover
 
-✅ 11 VLANs with secure segmentation
+- 11 VLANs with secure segmentation
 
-✅ Zero Trust security architecture
+- Zero Trust security architecture
 
-✅ Site-to-site VPN for five branches
+- Site-to-site VPN for five branches
 
-✅ Enterprise Wi-Fi design
+- Enterprise Wi-Fi design
 
-✅ VoIP deployment
+- VoIP deployment
 
-✅ DMZ for public services## Network Topology
+- DMZ for public services## Network Topology
 
 ---
 
-### Architecture
+## Architecture
 
-![Network Topology](screenshots/physicaldesign.png)
+<img src="screenshots/physicaldesign.png" width="700">
 
 
 ##### WAN Topology (HQ ↔ 5 Branches)
 
-![Network Topology](screenshots/WANTopology.png)
+<img src="screenshots/WANTopology.png" width="700">
 ---
 
 ## About
