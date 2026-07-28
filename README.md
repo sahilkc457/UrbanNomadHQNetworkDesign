@@ -27,6 +27,7 @@ This project simulates the complete network infrastructure for Urban Nomad Motor
 ---
 
 ## Technologies
+
 • Cisco Catalyst Switching
 • Cisco Firepower NGFW
 • Cisco Meraki
